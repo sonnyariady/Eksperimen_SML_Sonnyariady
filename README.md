@@ -1,86 +1,84 @@
 # SMSML Sonnyariady - Indonesian Food Classification
 
-Dataset:
-https://www.kaggle.com/datasets/rizkyyk/dataset-food-classification
+Dataset: https://www.kaggle.com/datasets/rizkyyk/dataset-food-classification
 
-GitHub:
-https://github.com/sonnyariady
+Project ini adalah submission MLOps untuk klasifikasi makanan Indonesia menggunakan TensorFlow, MLflow autolog, GitHub Actions, FastAPI, Prometheus, dan Grafana.
 
----
-
-# Deskripsi Project
-
-Project ini merupakan implementasi end-to-end MLOps untuk klasifikasi makanan Indonesia menggunakan TensorFlow, MLflow, FastAPI, Prometheus, dan Grafana.
-
-Pipeline project mencakup:
-
-- Dataset preprocessing
-- Model training TensorFlow CNN
-- Experiment tracking menggunakan MLflow
-- Model registry
-- FastAPI serving
-- Monitoring metrics menggunakan Prometheus
-- Visualization dashboard menggunakan Grafana
-- Docker Compose orchestration
-
----
-
-# Struktur Project
+## Struktur Penting
 
 ```text
 SMSML_Sonnyariady/
-│
+├── Eksperimen_SML_Sonnyariady.txt
+├── Workflow-CI.txt
+├── preprocessing/
+│   ├── Eksperimen_Sonnyariady.ipynb
+│   ├── automate_Sonnyariady.py
+│   └── namadataset_preprocessing/
 ├── Membangun_model/
+│   ├── Eksperimen_Sonnyariady.ipynb
 │   ├── modelling.py
 │   ├── modelling_tuning.py
-│   └── requirements.txt
-│
-├── model_artifacts/
-│   └── keras_model/
-│
-├── Monitoring dan Logging/
-│   ├── inference.py
-│   ├── prometheus.yml
-│   ├── docker-compose.yml
-│   ├── prometheus_exporter.py
-│   ├── 4.bukti monitoring Prometheus/
-│   ├── 5.bukti monitoring Grafana/
-│   └── 6.bukti alerting Grafana/
-│
-├── mlruns/
-├── mlartifacts/
-├── labels.json
-├── README.md
-└── .gitignore
+│   ├── requirements.txt
+│   └── screenshot_artifak.png
+├── Workflow-CI/
+│   ├── .github/workflows/mlflow-ci.yml
+│   ├── MLProject/
+│   │   ├── MLproject
+│   │   ├── conda.yaml
+│   │   ├── modelling.py
+│   │   └── requirements.txt
+│   └── screenshot_workflow_success.png
+└── Monitoring dan Logging/
+    ├── inference.py
+    ├── docker-compose.yml
+    ├── prometheus.yml
+    ├── prometheus_exporter.py
+    ├── 1.bukti_serving/
+    ├── 4.bukti monitoring Prometheus/
+    ├── 5.bukti monitoring Grafana/
+    └── 6.bukti alerting Grafana/
+```
 
-# Requirements
+## Kriteria 1 - Eksperimen Dataset
 
-- Python 3.10+
-- Docker Desktop
-- TensorFlow
-- FastAPI
-- MLflow
-- Prometheus
-- Grafana
+Notebook eksperimen berada di:
 
-# Install Dependency
+```text
+preprocessing/Eksperimen_Sonnyariady.ipynb
+```
 
-```bash
-pip install -r requirements.txt
+Notebook tersebut sudah berisi data loading, EDA, distribusi kelas, visualisasi sampel gambar, dan tahapan preprocessing.
 
-```md
-# Contoh Request Inference
+## Kriteria 2 - Model Machine Learning
 
-Endpoint:
+Training model berada di:
 
-http://127.0.0.1:8000/predict
+```text
+Membangun_model/modelling.py
+```
 
-Method:
+File ini menggunakan:
 
-POST
+```python
+mlflow.tensorflow.autolog(log_models=True)
+```
 
-Contoh menggunakan curl:
+Autolog digunakan untuk mencatat parameter, metrik, dan artefak model otomatis. Tidak menggunakan manual MLflow logging APIs untuk parameter, metrik, atau model artifact.
 
-```bash
-curl -X POST "http://127.0.0.1:8000/predict" ^
--F "file=@contoh.jpg"
+## Kriteria 3 - Workflow CI
+
+Repository Workflow CI:
+
+```text
+https://github.com/sonnyariady/Workflow-CI-SMSML-Sonnyariady/actions
+```
+
+Workflow menjalankan MLflow Project dari folder `MLProject` dan bukti sukses tersedia di:
+
+```text
+Workflow-CI/screenshot_workflow_success.png
+```
+
+## Kriteria 4 - Monitoring dan Logging
+
+Folder `Monitoring dan Logging` berisi bukti serving, konfigurasi Prometheus, dashboard Grafana, serta alerting Grafana.

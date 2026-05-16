@@ -4,5 +4,8 @@ https://github.com/sonnyariady/Eksperimen_SML_Sonnyariady
 Dataset: Indonesian Food Classification
 Kaggle: https://www.kaggle.com/datasets/rizkyyk/dataset-food-classification
 
-Catatan:
-Repository harus dibuat Public. Isi repository eksperimen minimal berisi notebook eksperimen berdasarkan template MSML, proses data loading, EDA, preprocessing, serta script automate_Sonnyariady.py untuk preprocessing otomatis.
+Catatan untuk reviewer:
+Repository dibuat Public. Struktur eksperimen sudah disediakan pada folder preprocessing/:
+- preprocessing/Eksperimen_Sonnyariady.ipynb berisi data loading, EDA, visualisasi distribusi kelas, contoh gambar, dan preprocessing.
+- preprocessing/automate_Sonnyariady.py berisi otomasi preprocessing.
+- preprocessing/namadataset_preprocessing/ adalah folder output preprocessing.

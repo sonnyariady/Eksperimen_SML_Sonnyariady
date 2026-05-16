@@ -8,19 +8,15 @@ import kagglehub
 import mlflow
 import mlflow.tensorflow
 
-# Enable automatic logging
-mlflow.tensorflow.autolog()
+# Enable automatic logging for parameters, metrics, and model artifacts.
+# Reviewer requirement: use MLflow autolog instead of manual MLflow logging APIs.
+mlflow.tensorflow.autolog(log_models=True)
 
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Rescaling
 from tensorflow.keras.callbacks import EarlyStopping
-
-# Enable automatic logging
-mlflow.tensorflow.autolog()
-from contextlib import nullcontext
-
 
 SEED = 42
 IMG_SIZE = (128, 128)
@@ -131,6 +127,7 @@ def build_model(num_classes):
     return model
 
 
+
 def main():
     labels = prepare_dataset()
     train_ds, val_ds, test_ds, class_names = build_datasets()
@@ -141,40 +138,35 @@ def main():
     callbacks = [EarlyStopping(monitor="val_accuracy", patience=3, restore_best_weights=True)]
 
     if os.getenv("MLFLOW_RUN_ID"):
-        # Jika dijalankan lewat `mlflow run`, MLflow sudah membuat active run.
+        # Saat dijalankan dari MLflow Project/GitHub Actions, active run sudah dibuat otomatis.
         run_context = nullcontext()
     else:
-        # Jika dijalankan langsung via `python modelling.py`, buat experiment dan run manual.
+        # Saat dijalankan lokal dengan `python modelling.py`, buat experiment dan run manual.
         mlflow.set_experiment(EXPERIMENT_NAME)
         run_context = mlflow.start_run(run_name="cnn_food_classification_basic")
 
     with run_context:
-        mlflow.log_param("dataset", DATASET)
-        mlflow.log_param("img_size", IMG_SIZE)
-        mlflow.log_param("batch_size", BATCH_SIZE)
-        mlflow.log_param("epochs", EPOCHS)
-        mlflow.log_param("max_classes", MAX_CLASSES)
-        mlflow.log_param("class_names", class_names)
-
-        history = model.fit(train_ds, validation_data=val_ds, epochs=EPOCHS, callbacks=callbacks)
+        history = model.fit(
+            train_ds,
+            validation_data=val_ds,
+            epochs=EPOCHS,
+            callbacks=callbacks,
+        )
         train_loss, train_acc = model.evaluate(train_ds, verbose=0)
         val_loss, val_acc = model.evaluate(val_ds, verbose=0)
         test_loss, test_acc = model.evaluate(test_ds, verbose=0)
 
-        mlflow.log_metric("train_accuracy", float(train_acc))
-        mlflow.log_metric("validation_accuracy", float(val_acc))
-        mlflow.log_metric("test_accuracy", float(test_acc))
-        mlflow.log_metric("test_loss", float(test_loss))
-
+        # Save a local physical model for the serving/inference step.
+        # MLflow model artifacts are logged automatically by mlflow.tensorflow.autolog().
         MODEL_DIR.mkdir(exist_ok=True)
         model.save(MODEL_DIR / "keras_model")
-        mlflow.tensorflow.log_model(model, artifact_path="model")
-        mlflow.log_artifact("labels.json")
 
-        print("Train accuracy:", train_acc)
-        print("Validation accuracy:", val_acc)
-        print("Test accuracy:", test_acc)
-        print("Run tersimpan di MLflow Tracking UI.")
+        print("Train accuracy:", float(train_acc))
+        print("Validation accuracy:", float(val_acc))
+        print("Test accuracy:", float(test_acc))
+        print("Run tersimpan di MLflow Tracking UI menggunakan MLflow autolog.")
+        print("Class names:", class_names)
+
 
 if __name__ == "__main__":
     main()
