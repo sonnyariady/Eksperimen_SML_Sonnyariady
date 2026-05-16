@@ -1,64 +1,8 @@
-Repository Eksperimen Kriteria 1:
+Repository eksperimen Kriteria 1:
 https://github.com/sonnyariady/Eksperimen_SML_Sonnyariady
 
-Dataset:
-Indonesian Food Classification
-https://www.kaggle.com/datasets/rizkyyk/dataset-food-classification
-
-Repository dibuat public sesuai ketentuan submission.
-
-Isi repository eksperimen mencakup:
-
-1. Data Loading
-- Load dataset image makanan Indonesia
-- Split train, validation, dan testing
-
-2. Exploratory Data Analysis (EDA)
-- Distribusi kelas
-- Visualisasi sample gambar
-- Analisis jumlah data
-
-3. Data Preprocessing
-- Resize image
-- Normalisasi image
-- Label encoding
-- Data augmentation
-
-4. Model Training
-- CNN TensorFlow/Keras
-- Hyperparameter tuning
-- Evaluasi model
-
-5. MLflow Experiment Tracking
-- Logging metrics
-- Logging parameter
-- Logging model artifact
-
-6. Automation Script
-- automate_Sonnyariady.py
-- preprocessing otomatis dataset
-
-Struktur repository eksperimen:
-
-- notebook_eksperimen.ipynb
-- automate_Sonnyariady.py
-- requirements.txt
-- README.md
+Dataset: Indonesian Food Classification
+Kaggle: https://www.kaggle.com/datasets/rizkyyk/dataset-food-classification
 
 Catatan:
-File notebook dan script dapat dijalankan secara lokal menggunakan Python dan TensorFlow.
-
-```md
-# Metrics Monitoring
-
-Aplikasi menyediakan endpoint metrics:
-
-http://127.0.0.1:8000/metrics
-
-Metrics digunakan oleh Prometheus untuk monitoring:
-- API requests
-- prediction total
-- prediction latency
-- CPU usage
-- memory usage
-- prediction errors
+Repository harus dibuat Public. Isi repository eksperimen minimal berisi notebook eksperimen berdasarkan template MSML, proses data loading, EDA, preprocessing, serta script automate_Sonnyariady.py untuk preprocessing otomatis.

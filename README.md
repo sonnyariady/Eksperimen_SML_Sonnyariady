@@ -52,3 +52,35 @@ SMSML_Sonnyariady/
 ├── labels.json
 ├── README.md
 └── .gitignore
+
+# Requirements
+
+- Python 3.10+
+- Docker Desktop
+- TensorFlow
+- FastAPI
+- MLflow
+- Prometheus
+- Grafana
+
+# Install Dependency
+
+```bash
+pip install -r requirements.txt
+
+```md
+# Contoh Request Inference
+
+Endpoint:
+
+http://127.0.0.1:8000/predict
+
+Method:
+
+POST
+
+Contoh menggunakan curl:
+
+```bash
+curl -X POST "http://127.0.0.1:8000/predict" ^
+-F "file=@contoh.jpg"

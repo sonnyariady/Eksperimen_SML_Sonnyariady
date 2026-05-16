@@ -1,56 +1,93 @@
+# =========================
 # Python
+# =========================
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
+*$py.class
 
-# Virtual Environment
+# Virtual Env
 venv/
 .env/
-
-# VSCode
-.vscode/
+.venv/
 
 # Jupyter
 .ipynb_checkpoints/
 
+# =========================
 # MLflow
+# =========================
 mlruns/
 mlartifacts/
+mlflow.db
 
-# Logs
-*.log
+# =========================
+# TensorFlow / Model Output
+# =========================
+*.h5
+*.keras
+saved_model.pb
+variables/
+assets/
 
-# Cache
+# Generated model folders
+model_artifacts/
+Membangun_model/model/
+Membangun_model/output/
+
+# =========================
+# Dataset cache
+# =========================
 .cache/
+*.cache
 
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
 # Build
+# =========================
 build/
 dist/
 
+# =========================
+# VSCode
+# =========================
+.vscode/
+
+# =========================
 # OS
+# =========================
 .DS_Store
 Thumbs.db
 
-# Pytest
+# =========================
+# Pytest / Coverage
+# =========================
 .pytest_cache/
-
-# Coverage
 .coverage
 htmlcov/
 
+# =========================
 # TensorBoard
+# =========================
 logs/
+events.out.tfevents.*
 
-# Temporary
-temp/
-tmp/
+# =========================
+# Temporary ZIP
+# =========================
+*.zip
 
-# Python packaging
-*.egg-info/
-
-# Ignore Docker cache
-*.pid
-
-# Ignore generated screenshots temporary
-Screenshot*.png
+# =========================
+# Keep important artifacts
+# =========================
+!Membangun_model/screenshot_artifak.png
+!Monitoring dan Logging/
+!Workflow-CI/
+!Eksperimen_Sonnyariady.ipynb
+!README.md
+!Workflow-CI.txt
+!Eksperimen_SML_Sonnyariady.txt
