@@ -6,6 +6,11 @@ from pathlib import Path
 import kagglehub
 import mlflow
 import mlflow.tensorflow
+import mlflow.tensorflow
+
+# Enable automatic logging
+mlflow.tensorflow.autolog()
+
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Sequential
