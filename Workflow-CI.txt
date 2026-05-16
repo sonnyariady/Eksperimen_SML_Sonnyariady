@@ -1,0 +1,5 @@
+Repository Workflow CI Kriteria 3:
+https://github.com/sonnyariady/Workflow-CI-SMSML-Sonnyariady
+
+Catatan:
+Repository harus dibuat Public. Workflow GitHub Actions menjalankan MLflow Project dari folder MLProject menggunakan modelling.py dan conda.yaml.

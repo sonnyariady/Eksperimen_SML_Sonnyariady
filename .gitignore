@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env/
+
+# VSCode
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Logs
+*.log
+
+# Cache
+.cache/
+
+# Build
+build/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# TensorBoard
+logs/
+
+# Temporary
+temp/
+tmp/
+
+# Python packaging
+*.egg-info/
+
+# Ignore Docker cache
+*.pid
+
+# Ignore generated screenshots temporary
+Screenshot*.png

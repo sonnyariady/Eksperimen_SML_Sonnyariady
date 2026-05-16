@@ -1,0 +1,7 @@
+Isi file ini dengan screenshot/teks bukti serving setelah menjalankan:
+uvicorn inference:app --host 0.0.0.0 --port 8000
+
+Bukti yang disarankan:
+- Screenshot terminal uvicorn berjalan.
+- Screenshot http://127.0.0.1:8000/docs.
+- Screenshot response endpoint /predict atau /metrics.
